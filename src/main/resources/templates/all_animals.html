@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>All Animals</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+<!-- Navigation -->
+<nav>
+    <a href="/">Home</a> |
+    <a href="/animal">Animal</a> |
+    <a href="/animal/new">Create New Animal</a>
+</nav>
+
+<h1>All Animals</h1>
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Breed</th>
+        <th>Coating Type</th>
+        <th>Weight</th>
+        <th>Birth Date</th>
+        <th>Actions</th>
+    </tr>
+    <tr th:each="animal : ${allAnimals}" th:attr="data-animal-id=${animal.id}">
+        <td th:text="${animal.id}"></td>
+        <td th:text="${animal.name}"></td>
+        <td th:text="${animal.age}"></td>
+        <td th:text="${animal.breed}"></td>
+        <td th:text="${animal.coatingType}"></td>
+        <td th:text="${animal.weight}"></td>
+        <td th:text="${animal.birthDate}"></td>
+        <td>
+            <!-- View Button -->
+            <a th:href="@{/animal(id=${animal.id})}">View</a> |
+
+            <!-- Edit Button (Opens Edit Form) -->
+            <button type="button" onclick="showEditForm(this)">Edit</button> |
+
+            <!-- Delete Button -->
+            <form th:action="@{/animal/delete}" method="post" style="display: inline;">
+                <input type="hidden" name="id" th:value="${animal.id}">
+                <button type="submit" onclick="return confirm('Are you sure you want to delete this animal?');">Delete</button>
+            </form>
+        </td>
+    </tr>
+</table>
+
+<!-- Hidden Edit Form (Appears when 'Edit' is clicked) -->
+<div id="editFormContainer" style="display: none;">
+    <h2>Edit Animal</h2>
+    <form th:action="@{/animal/edit}" method="post">
+        <input type="hidden" id="editAnimalId" name="animalId">
+
+        <label>Name: <input type="text" id="editName" name="name"></label><br>
+        <label>Age: <input type="number" id="editAge" name="age"></label><br>
+        <label>Breed: <input type="text" id="editBreed" name="breed"></label><br>
+        <label>Coating Type: <input type="text" id="editCoatingType" name="coatingType"></label><br>
+        <label>Weight: <input type="number" step="0.1" id="editWeight" name="weight"></label><br>
+        <label>Birth Date: <input type="date" id="editBirthDate" name="birthDate"></label><br>
+
+        <button type="submit">Save Changes</button>
+        <button type="button" onclick="hideEditForm()">Cancel</button>
+    </form>
+</div>
+
+<script>
+    function showEditForm(button) {
+        // Get the row of the clicked button
+        let row = button.closest('tr');
+
+        // Retrieve values from the row
+        let id = row.children[0].innerText;
+        let name = row.children[1].innerText;
+        let age = row.children[2].innerText;
+        let breed = row.children[3].innerText;
+        let coatingType = row.children[4].innerText;
+        let weight = row.children[5].innerText;
+        let birthDate = row.children[6].innerText;
+
+        // Fill the edit form with these values
+        document.getElementById('editAnimalId').value = id;
+        document.getElementById('editName').value = name;
+        document.getElementById('editAge').value = age;
+        document.getElementById('editBreed').value = breed;
+        document.getElementById('editCoatingType').value = coatingType;
+        document.getElementById('editWeight').value = weight;
+        document.getElementById('editBirthDate').value = birthDate;
+
+        // Show the form
+        document.getElementById('editFormContainer').style.display = "block";
+    }
+
+    function hideEditForm() {
+        document.getElementById('editFormContainer').style.display = "none";
+    }
+</script>
+
+</body>
+</html>

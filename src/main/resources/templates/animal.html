@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Animal Details</title>
+    <script>
+        window.onload = function() {
+            var message = "[[${message}]]"; // Thymeleaf injects message here
+            if (message && message.trim() !== "null" && message.trim() !== "") {
+                alert(message); // Show popup notification
+            }
+        };
+    </script>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+<!-- Navigation -->
+<nav>
+    <a href="/">Home</a> |
+    <a href="/animal">Animal</a> |
+    <a href="/animal/new">Create New Animal</a> |
+    <a href="/animal/all">View All Animals</a>
+</nav>
+
+<h1>Animal Details</h1>
+
+<!-- Display Animal Details -->
+<div th:if="${animal}">
+    <h2>Animal Details</h2>
+    <p><strong>ID:</strong> <span th:text="${animal.id}"></span></p>
+    <p><strong>Name:</strong> <span th:text="${animal.name}"></span></p>
+    <p><strong>Age:</strong> <span th:text="${animal.age}"></span></p>
+    <p><strong>Breed:</strong> <span th:text="${animal.breed}"></span></p>
+    <p><strong>Coating Type:</strong> <span th:text="${animal.coatingType}"></span></p>
+    <p><strong>Weight (kg):</strong> <span th:text="${animal.weight}"></span></p>
+    <p><strong>Birth Date:</strong> <span th:text="${animal.birthDate}"></span></p>
+    <p><strong>Added At:</strong> <span th:text="${animal.addedAt}"></span></p>
+</div>
+
+</body>
+</html>

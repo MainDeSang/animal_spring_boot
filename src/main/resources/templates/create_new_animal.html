@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Create New Animal</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+<!-- Navigation -->
+<nav>
+    <a href="/">Home</a> |
+    <a href="/animal">Animal</a> |
+    <a href="/animal/all">View All Animals</a>
+</nav>
+
+<h1>Create a New Animal</h1>
+
+<form th:action="@{/animal/new}" method="post">
+    <!-- Name: Nur Buchstaben, keine Zahlen oder Sonderzeichen -->
+    <label>Name:
+        <input type="text" name="name" pattern="[A-Za-zÄÖÜäöüß\s-]{2,50}"
+               title="Bitte nur Buchstaben (min. 2, max. 50 Zeichen)" required>
+    </label><br>
+
+    <!-- Alter: Ganze Zahlen zwischen 0 und 100 -->
+    <label>Age:
+        <input type="number" name="age" min="0" max="100"
+               title="Bitte ein Alter zwischen 0 und 100 eingeben" required>
+    </label><br>
+
+    <!-- Rasse: Optional, aber max. 50 Zeichen -->
+    <label>Breed:
+        <input type="text" name="breed" pattern="[A-Za-zÄÖÜäöüß\s-]{2,50}"
+               title="Bitte nur Buchstaben, maximal 50 Zeichen">
+    </label><br>
+
+    <!-- Fellart: Optional, z. B. Fur, Feathers, Scales -->
+    <label>Coating Type:
+        <input type="text" name="coatingType" list="coating-options">
+        <datalist id="coating-options">
+            <option value="Fur">
+            <option value="Feathers">
+            <option value="Scales">
+            <option value="Skin">
+        </datalist>
+    </label><br>
+
+    <!-- Gewicht: Dezimalzahlen mit max. 2 Nachkommastellen -->
+    <label>Weight (kg):
+        <input type="number" name="weight" step="0.01" min="0.1" max="500"
+               title="Bitte ein Gewicht zwischen 0.1 und 500 kg eingeben">
+    </label><br>
+
+    <!-- Geburtsdatum: Keine zukünftigen Daten erlaubt -->
+    <label>Birth Date:
+        <input type="date" name="birthDate" max="9999-12-31"
+               title="Das Datum darf nicht in der Zukunft liegen">
+    </label><br>
+
+    <button type="submit">Create Animal</button>
+</form>
+
+</body>
+</html>

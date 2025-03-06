@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Willkommen im Projekt</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+
+<div class="container">
+    <h1>Willkommen zu meinem kleinen Spring Boot Projekt! 🚀</h1>
+
+    <p class="intro-text">
+        Hey! Ich bin Moritz und habe dieses Projekt schnell für euch aufgesetzt.
+        Es geht hier nicht um Perfektion – insbesondere, was <b>Thymeleaf und CSS</b> angeht!
+        Mir war es wichtiger, euch die <b>Grundstruktur von Spring Boot</b> zu zeigen.
+    </p>
+
+    <p>
+        Bestimmt gibt es irgendwo noch Fehler oder Stellen, die verbessert werden können.
+        Falls euch etwas auffällt – zeigt es mir einfach, dann fixen wir es zusammen!
+    </p>
+
+    <p>
+        Spielt ruhig damit herum: <b>Bearbeitet es, erweitert es, macht es schöner</b> – alles, was euch gefällt!
+    </p>
+
+    <h2>🚀 Verwendete Technologien</h2>
+    <ul>
+        <li><b>Spring Boot</b> – Das Herzstück des Projekts. Verwaltet die gesamte Backend-Logik.</li>
+        <li><b>Thymeleaf</b> – Template-Engine für HTML, die es ermöglicht, dynamische Inhalte anzuzeigen.</li>
+        <li><b>Spring Data JPA</b> – Erleichtert die Datenbankkommunikation und speichert Tiere in der Datenbank.</li>
+        <li><b>H2 Datenbank</b> – Eine leichtgewichtige In-Memory-Datenbank für schnelle Tests ohne externe DB. Beim neustarten des Projektes ist immer alles gelöscht, was in der DB stand.</li>
+    </ul>
+
+    <p class="footer-text">
+        Viel Spaß beim Entdecken! 😃
+    </p>
+
+    <nav>
+        <a href="/animal">➡ Zur Tierübersicht</a>
+        <a href="/animal/new">➕ Neues Tier hinzufügen</a>
+        <a href="/animal/all">📜 Alle Tiere anzeigen</a>
+    </nav>
+</div>
+
+</body>
+</html>
