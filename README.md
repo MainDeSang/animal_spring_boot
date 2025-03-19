@@ -45,4 +45,5 @@ To run the project locally:
   ./mvnw clean package
   java -jar target/animal_spring_boot-0.0.1-SNAPSHOT.jar
 
-
+**License**
+This project is open-source and available under the MIT License.
